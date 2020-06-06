@@ -1,3 +1,4 @@
+. ~/.bash_profile
 if  [ -n "$AWS_REGION" ] ;then
 echo "AWS_REGION is $AWS_REGION" 
 else
