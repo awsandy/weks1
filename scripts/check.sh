@@ -10,6 +10,13 @@ else
 echo "MASTER_ARN is not set this must be done before proceeding"
 exit
 fi
+
+kn=`aws ec2 describe-key-pairs --query "KeyPairs[?KeyName=='eksworkshop'].KeyName" | grep eks | tr -d ' ' | tr -d '"'`
+if [ $kn != "eksworkshop" ]; then
+echo "Could not find eksworkshop key pair - create before proceeding"
+exit
+fi
+
 echo "Check my profile"
 instid=`curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id`
 echo $instid
