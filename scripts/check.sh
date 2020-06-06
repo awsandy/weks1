@@ -1,7 +1,15 @@
-#kubectl get configmap -n kube-system aws-auth -o yaml > /tmp/aws-auth.yaml
-#cat /tmp/aws-auth.yaml
-test -n "$AWS_REGION" && echo AWS_REGION is "$AWS_REGION" || echo "AWS_REGION is not set this must be done before proceeding"
-test -n "$MASTER_ARN" && echo MASTER_ARN is "$MASTER_ARN" || echo "MASTER_ARN is not set this must be done before proceeding"
+if  [ -n "$AWS_REGION" ] ;then
+echo "AWS_REGION is $AWS_REGION" 
+else
+echo "AWS_REGION is not set this must be done before proceeding"
+exit
+fi
+if  [ -n "$MASTER_ARN" ] ;then
+echo "MASTER_ARN is $MASTER_ARN" 
+else
+echo "MASTER_ARN is not set this must be done before proceeding"
+exit
+fi
 echo "Check my profile"
 instid=`curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id`
 echo $instid
