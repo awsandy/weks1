@@ -11,4 +11,4 @@ exit
 else
 echo "OK Found Instance profile eksworkshop-admin"
 fi
-aws sts get-caller-identity --query Arn | grep eksworkshop-admin -q && echo "IAM role valid - eksworkshop-admin" || echo "IAM role NOT valid"
+aws sts get-caller-identity --query Arn | grep eksworkshop-admin -q && echo "IAM role valid eksworkshop-admin OK to proceed" || echo "IAM role NOT validi DO NOT PROCEED"
