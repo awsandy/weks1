@@ -6,7 +6,7 @@ echo $instid
 ip=`aws ec2 describe-iam-instance-profile-associations --filters "Name=instance-id,Values=$instid" | jq .IamInstanceProfileAssociations[0].IamInstanceProfile.Arn | cut -f2 -d'/' | tr -d '"'`
 echo $ip
 if [ "$ip" != "eksworkshop-admin" ] ; then
-echo "Could not find Instance profile eksworkshop-admin exiting"
+echo "Could not find Instance profile eksworkshop-admin DO NOT PROCEED exiting"
 exit
 else
 echo "OK Found Instance profile eksworkshop-admin"
