@@ -35,7 +35,7 @@ cid=`eval $comm | head -1 | tr -d '"'`
 echo "EKS VPC Id = $cid"
 
 echo "Get the EKS VPC CIDR"
-comm=`printf "aws ec2 describe-vpcs | jq '.Vpcs[] |  select(.Tags[].Value==\"%s\").CidrBlock'" $CLUSTER`
+comm=`printf "aws ec2 describe-vpcs | jq '.Vpcs[] |  select(try .Tags[].Value==\"%s\").CidrBlock'" $CLUSTER`
 ccidr=`eval $comm | head -1 | tr -d '"'`
 echo "EKS VPC Primary CIDR = $ccidr"
 
