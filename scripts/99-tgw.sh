@@ -30,7 +30,7 @@ sub2=`echo $subs | jq .Subnets[2].SubnetId | tr -d '"'`
 echo "Attach the Default VPC's 3x subnets to our transit gateway"
 
 echo "Get the EKS VPC id"
-comm=`printf "aws ec2 describe-vpcs | jq '.Vpcs[] |  select(try .Tags[].Value==\"%s\").VpcId'" $CLUSTER`
+comm=`printf "aws ec2 describe-vpcs | jq '.Vpcs[] |  select(try qq.Tags[].Value==\"%s\").VpcId'" $CLUSTER`
 cid=`eval $comm | head -1 | tr -d '"'`
 echo "EKS VPC Id = $cid"
 
