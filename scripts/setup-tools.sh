@@ -12,8 +12,11 @@ rm -rf aws
 #sudo pip install --upgrade awscli && hash -r
 
 echo "other tools"
-sudo yum -y install jq gettext bash-completion wget nmap bind-utils
+sudo yum -y install moreutils jq gettext bash-completion wget nmap bind-utils
 
+echo 'yq() {
+  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq yq "$@"
+}' | tee -a ~/.bash_profile && source ~/.bash_profile
 
 echo "Terraform"
 wget https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip
@@ -98,13 +101,13 @@ git clone https://github.com/brentley/ecsdemo-nodejs.git
 git clone https://github.com/brentley/ecsdemo-crystal.git
 git clone https://github.com/awsandy/aws2tf.git
 
-
+source ~/.bash_profile
 
 aws --version
 eksctl version
 kubectl version --client
 helm version
-
+yq --version
 
 cd $this
 
